@@ -13,6 +13,18 @@ vim.opt.signcolumn = "yes:6"
 require("config.lazy")
 
 
+-- macro command for shader testing
 
--- Load Noice configuration for command line padding
-local noice = require('config.noice')
+vim.api.nvim_create_user_command(
+    'RunShader',
+    function()
+        local file = vim.fn.expand('%:p')
+        if file:match('%.glsl$') then
+            vim.cmd('write') -- Save the file
+            vim.fn.system('venv\\Scripts\\activate && python display_shader.py ' .. file)
+        else
+            print("Current file is not a .glsl file.")
+        end
+    end,
+    {}
+)
