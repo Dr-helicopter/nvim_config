@@ -1,8 +1,15 @@
+_G.lin_or_win = function(linux_choice, windows_choice)
+    local os_name = vim.loop.os_uname().sysname
+    if os_name == "Linux" then return linux_choice
+    else return windows_choice end
+end
 
 -- tabs
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = false
+vim.o.smartindent = true
+
 
 -- line numbers
 vim.opt.number = true
@@ -10,12 +17,30 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
 vim.opt.signcolumn = 'yes:4'
 
+
+-- syntax highligting
+vim.cmd("syntax on")
+
+
 -- transparency
 vim.cmd([[
-    hi Normal guibg=NONE ctermbg=NONE
-    hi NonText guibg=NONE ctermbg=NONE
+	hi Normal guibg=NONE ctermbg=NONE
+	hi NonText guibg=NONE ctermbg=NONE
 ]])
 
 
 -- loading lazy
 require('config.lazy')
+
+
+
+-- Python settings
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "python",
+    callback = function()
+        vim.opt_local.expandtab = false
+		vim.o.smartindent = true
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+    end,
+})

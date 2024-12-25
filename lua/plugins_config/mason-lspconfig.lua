@@ -1,6 +1,8 @@
 require('mason-lspconfig').setup({
 	ensure_installed = {
 		'lua_ls',
+		'mypy',
+		'ruff',
 	},
 	automatic_installation = true,
 })

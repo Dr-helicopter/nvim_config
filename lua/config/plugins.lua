@@ -1,5 +1,6 @@
 -- plugins table
 
+
 return {
 	{ -- lualine
 		'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'},
@@ -57,6 +58,15 @@ return {
 	},
 	-- lsps end --
 
+	-- static analysis
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		ft = {"python"},
+		opts = function() require("plugins_config.null-ls") end,
+	},
+
+
+
 	{ -- autopairs
 		"windwp/nvim-autopairs",
         opts = {
@@ -70,9 +80,8 @@ return {
           	local cmp_autopairs = require "nvim-autopairs.completion.cmp"
           	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
+		
 	},
-
-
 
 
 }
