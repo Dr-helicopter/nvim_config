@@ -34,9 +34,7 @@ return {
 				"hrsh7th/cmp-path",
 			},
 		},
-		opts = function()
-			return require "plugins_config.cmp"
-    	end,
+		config = function() return require("plugins_config.cmp") end,
   	},
 
   	-- LSPs --
@@ -52,18 +50,8 @@ return {
 		dependencies = {'williamboman/mason.nvim'},
 		config = function() require('plugins_config.mason-lspconfig') end,
 	},
-	{
-		'hrsh7th/cmp-nvim-lsp',
-		config = function() require('plugins_config.cmp') end,
-	},
 	-- lsps end --
 
-	-- static analysis
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		ft = {"python"},
-		opts = function() require("plugins_config.null-ls") end,
-	},
 
 
 

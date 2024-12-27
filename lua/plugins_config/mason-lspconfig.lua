@@ -2,7 +2,7 @@ require('mason-lspconfig').setup({
 	ensure_installed = {
 		'lua_ls',
 		'mypy',
-		'ruff',
+		'pylsp',
 	},
 	automatic_installation = true,
 })
@@ -62,11 +62,18 @@ require("mason-lspconfig").setup_handlers({
 	function(server) lspconfig[server].setup({}) end,
 })
 
-lspconfig.pyright.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = {'python'}
-})
+lspconfig.pylsp.setup{
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = { "W191", "E701", "E704","E301", "E741" },        
+					 maxLineLength = 100,
+				}
+			}
+		}
+	}
+}
 
 lspconfig.lua_ls.setup({
 	settings = {
