@@ -1,7 +1,7 @@
 _G.lin_or_win = function(linux_choice, windows_choice)
-    local os_name = vim.loop.os_uname().sysname
-    if os_name == "Linux" then return linux_choice
-    else return windows_choice end
+	local os_name = vim.loop.os_uname().sysname
+	if os_name == "Linux" then return linux_choice
+	else return windows_choice end
 end
 
 -- tabs
@@ -17,9 +17,6 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
 vim.opt.signcolumn = 'yes:4'
 
-
--- syntax highligting
-vim.cmd("syntax on")
 
 
 -- transparency
@@ -44,3 +41,14 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.shiftwidth = 4
     end,
 })
+
+
+-- syntax highligting
+vim.cmd("syntax on")
+vim.cmd.colorscheme('horizon')
+vim.o.background = "dark" -- or "light"
+
+
+-- code folding
+vim.o.foldmethod = "indent"      -- Use 'expr' for folding
+vim.o.foldlevel = 99

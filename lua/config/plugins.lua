@@ -2,6 +2,16 @@
 
 
 return {
+	{
+		"akinsho/horizon.nvim",
+	},
+
+
+	{ -- treesitter
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function() require('plugins_config.treesitter') end,
+	},
 	{ -- lualine
 		'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'},
 		config = function() require('plugins_config.lualine') end,
@@ -68,8 +78,6 @@ return {
           	local cmp_autopairs = require "nvim-autopairs.completion.cmp"
           	require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
-		
+
 	},
-
-
 }
