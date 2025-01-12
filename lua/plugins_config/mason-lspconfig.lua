@@ -57,6 +57,7 @@ capabilities.textDocument.completion.completionItem = {
 
 local lspconfig = require('lspconfig')
 
+--for python
 require("mason-lspconfig").setup_handlers({
 	function(server) lspconfig[server].setup({}) end,
 })
@@ -66,7 +67,7 @@ lspconfig.pylsp.setup{
 		pylsp = {
 			plugins = {
 				pycodestyle = {
-					ignore = { "W191", "E701", "E704","E301", "E741" },        
+					ignore = { "W191", "E701", "E704","E301", "E741" },
 					 maxLineLength = 100,
 				}
 			}
@@ -74,6 +75,8 @@ lspconfig.pylsp.setup{
 	}
 }
 
+
+-- for lua
 lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
@@ -86,3 +89,6 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+
+
+

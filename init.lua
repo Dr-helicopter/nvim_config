@@ -46,9 +46,14 @@ vim.api.nvim_create_autocmd("FileType", {
 -- syntax highligting
 vim.cmd("syntax on")
 vim.cmd.colorscheme('horizon')
-vim.o.background = "dark" -- or "light"
+vim.o.background = "dark"
 
 
 -- code folding
-vim.o.foldmethod = "indent"      -- Use 'expr' for folding
+vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
+
+
+
+-- keymaping
+require('keymaps')
