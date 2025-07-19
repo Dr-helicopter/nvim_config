@@ -1,6 +1,7 @@
 require("mason").setup({
 	ensure_installed = {
-		"lua_ls",
+		'clangd',
+		"llua_ls",
 		"glslls",
 		"pylsp",
 	},

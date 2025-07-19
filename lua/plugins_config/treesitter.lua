@@ -1,13 +1,22 @@
-require("nvim-treesitter.configs").setup({
-	auto_install = false,
+local treesitter = require('nvim-treesitter.configs')
+
+treesitter.setup {
+	auto_install = true,
 	sync_install = true,
-	ensure_installed = { "lua", "python", 'gdscript'},
+	ensure_installed = {
+		'lua',
+		'python',
+		'gdscript',
+		'gdshader',
+		'godot_resource',
+		'lua',
+	},
 	indent = { enable = true },
 
 	highlight = {
 		enable = true,
-		disable = { "c", "rust" },
+		disable = { 'c', 'rust' },
 		additional_vim_regex_highlighting = true,
 	},
-})
+}
 

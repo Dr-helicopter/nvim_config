@@ -32,7 +32,7 @@ require('config.lazy')
 
 
 -- Python settings
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd('FileType', {
     pattern = "python",
     callback = function()
         vim.opt_local.expandtab = false
@@ -57,3 +57,7 @@ vim.o.foldlevel = 99
 
 -- keymaping
 require('keymaps')
+
+-- godot support
+require('godot_support')
+

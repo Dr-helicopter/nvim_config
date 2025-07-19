@@ -80,3 +80,31 @@ map('n', 'qW', 'zW', opts)
 
 map('n', 'z', 'u', opts)
 map('n', 'Z', '<C-r>', opts)
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  command = [[
+    nnoremap <buffer> s <Down>
+    nnoremap <buffer> S s
+
+    nnoremap <buffer> d <CR>    " open file / dir
+    nnoremap <buffer> a -       " parent directory
+    nnoremap <buffer> n %       " new file
+    nnoremap <buffer> N d       " new directory
+  ]]
+})
+
+
+-- tab management
+for i = 1, 9 do
+  vim.keymap.set('n', '<C-' .. i .. '>', i .. 'gt', { noremap = true, silent = true })
+  vim.keymap.set('i', '<C-' .. i .. '>', i .. 'gt', { noremap = true, silent = true })
+end
+vim.keymap.set('n', '<Tab>', ':tabnext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
+
+
+
+-- block the stupi '' on my keyboeard
+vim.keymap.set('i', '', '<Nop>', { noremap = true })

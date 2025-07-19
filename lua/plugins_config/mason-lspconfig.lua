@@ -1,11 +1,6 @@
-require('mason-lspconfig').setup({
-	ensure_installed = {
-		'lua_ls',
-		'pylsp',
-	},
-	automatic_installation = true,
+vim.diagnostic.config({
+	virtual_text = true,
 })
-
 
 local map = vim.keymap.set
 
@@ -27,7 +22,6 @@ local on_attach = function(_, bufnr)
 	end, opts "List workspace folders")
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-	map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
 	map("n", "gr", vim.lsp.buf.references, opts "Show references")
@@ -36,7 +30,10 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem = {
-	documentationFormat = { "markdown", "plaintext" },
+	documentationFormat = {
+		'markdown',
+		'plaintext'
+	},
 	snippetSupport = true,
 	preselectSupport = true,
 	insertReplaceSupport = true,
@@ -56,39 +53,55 @@ capabilities.textDocument.completion.completionItem = {
 
 
 local lspconfig = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
 
---for python
-require("mason-lspconfig").setup_handlers({
-	function(server) lspconfig[server].setup({}) end,
+ mason_lspconfig.setup({
+	ensure_installed = { "lua_ls", "pylsp" },
+	automatic_enable = true, -- auto-enable via vim.lsp.enable()
 })
 
-lspconfig.pylsp.setup{
+-- Global server settings
+vim.lsp.config("*", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+-- Per-server override for Lua
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			runtime = { version = "LuaJIT" },
+			diagnostics = { globals = { "vim" } },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+		},
+	},
+})
+
+-- Python
+vim.lsp.config("pylsp", {
 	settings = {
 		pylsp = {
 			plugins = {
 				pycodestyle = {
-					ignore = { "W191", "E701", "E704","E301", "E741" },
-					 maxLineLength = 100,
-				}
-			}
-		}
-	}
-}
-
-
--- for lua
-lspconfig.lua_ls.setup({
-	settings = {
-		Lua = {
-			runtime = { version = 'LuaJIT' },
-    		diagnostics = { globals = { 'vim' } },
-    		workspace = {
-        		library = vim.api.nvim_get_runtime_file("", true),
-        		checkThirdParty = true,
-      		},
+					ignore = { "W191", "E701", "E704", "E301", "E741" },
+					maxLineLength = 100,
+				},
+			},
 		},
 	},
 })
 
 
+lspconfig.gdscript.setup(capabilities)
 
+
+lspconfig.clangd.setup {
+    cmd = { "/bin/clangd" },
+    -- optional:
+    -- cmd = { "/home/you/tools/clangd/bin/clangd", "--background-index" },
+}
+
+lspconfig.gdscript.setup(capabilities)
