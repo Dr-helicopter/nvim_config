@@ -2,6 +2,9 @@ local cmp = require('cmp')
 
 
 cmp.setup({
+	completion = {
+        autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
+    },
 	sources = {
 		{ name = 'nvim_lsp' }, -- LSP source from mason-lspconfig
 		{ name = 'buffer' }, -- Buffer completions
@@ -17,3 +20,12 @@ cmp.setup({
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 	}),
 })
+
+
+cmp.event:on("menu_closed", function()
+    print("cmp menu closed")
+end)
+
+cmp.event:on("menu_opened", function()
+    print("cmp menu opened")
+end)

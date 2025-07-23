@@ -98,10 +98,5 @@ vim.lsp.config("pylsp", {
 lspconfig.gdscript.setup(capabilities)
 
 
-lspconfig.clangd.setup {
-    cmd = { "/bin/clangd" },
-    -- optional:
-    -- cmd = { "/home/you/tools/clangd/bin/clangd", "--background-index" },
-}
 
 lspconfig.gdscript.setup(capabilities)
