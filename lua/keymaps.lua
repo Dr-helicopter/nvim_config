@@ -1,90 +1,119 @@
-local opts = { noremap = true, nowait = true, silent = true }
-local map = vim.keymap.set
+--[[
 
+    __              __    _           ___                 
+   / /_____  __  __/ /_  (_)___  ____/ (_)___  ____ ______
+  / //_/ _ \/ / / / __ \/ / __ \/ __  / / __ \/ __ `/ ___/
+ / ,< /  __/ /_/ / /_/ / / / / / /_/ / / / / / /_/ (__  ) 
+/_/|_|\___/\__, /_.___/_/_/ /_/\__,_/_/_/ /_/\__, /____/  
+          /____/                            /____/        
+
+]]
+
+local opts = { noremap = true, nowait = true, silent = true }
+local function map(m, k, b) vim.keymap.set(m, k, b, opts ) end
+local function apimap(m, k, b) vim.api.nvim_set_keymap(m, k, b, opts) end
 
 
 -- Map Ctrl+C to yank (copy)
-vim.api.nvim_set_keymap('n', "<C-c>", '"+y', opts)
-vim.api.nvim_set_keymap('v', "<C-c>", '"+y',  opts)
+apimap('n', "<C-c>", '"+y')
+apimap('v', "<C-c>", '"+y')
 
 
 -- Map Ctrl+V to paste
-vim.api.nvim_set_keymap('n', "<C-v>", '"+p', opts)
-vim.api.nvim_set_keymap('i', "<C-v>", "<C-r>+", opts)
+apimap('n', "<C-v>", '"+p')
+apimap('i', "<C-v>", "<C-r>+")
 
 
 
 -- visual mode remap
-map('v', 'a', "<Nop>", opts)
-map('v', "zw", "aw", opts)
-map('v', "zp", "ap", opts)
+map('v', 'a', "<Nop>")
+map('v', "zw", "aw")
+map('v', "zp", "ap")
 
-map('v', 'X', '"_di', opts)
-map('v', 'x', 'd', opts) -- this changes nothing actuly
+map('v', 'X', '"_di')
+map('v', 'x', 'd') -- this changes nothing actuly
 
 
 
 --normal mode remap
-map('n', 'e', 'd', opts)
-map('n', 'ee', 'dd', opts)
-map('n', 'S', 'i', opts)
-map('n', 'W', 'a', opts)
-map('n', 'i', 's', opts)
+map('n', 'S', 'i')
+map('n', 'W', 'a')
+map('n', 'i', 's')
+map('n', '<C-s>', ':w<CR>')
+
+--[[
+  ______ 
+ |  ____|
+ | |__   
+ |  __|  
+ | |____ 
+ |______|
+
+  ]]
+
+map('n', 'e', 'd')
+map('n', 'eD', 'd$')
+map('n', 'ed', 'dw')
+map('n', 'ee', 'dd')
+
+
 
 
 
 --insertmode remap 
-map({'i', 'n'}, "<C-z>", "<Esc>", opts)
-map('i', '<A-w>', "<Up>", opts)
-map('i', '<A-s>', "<Down>", opts)
-map('i', '<A-a>', "<Left>", opts)
-map('i', '<A-d>', "<Right>", opts)
+map({'i', 'n'}, "<C-z>", "<Esc>")
+map('i', '<A-w>', "<Up>")
+map('i', '<A-s>', "<Down>")
+map('i', '<A-a>', "<Left>")
+map('i', '<A-d>', "<Right>")
 
-
+map('i', '<C-e>', 'd')
+map('i', '<A-x>', '<BS>')
 
 
 -- glbal remap
-map('', 'w', "<Up>", opts)
-map('', 's', "<Down>", opts)
-map('', 'a', "<Left>", opts)
-map('', 'd', "<Right>", opts)
+map('', 'w', "<Up>")
+map('', 's', "<Down>")
+map('', 'a', "<Left>")
+map('', 'd', "<Right>")
 
-map('', 'D', 'e', opts)
-map('', 'A', 'b', opts)
+map('', 'D', 'e')
+map('', 'A', 'b')
 
 
 
 -- normal mode z remaps
-map('n', 'QQ', 'ZZ', opts)
-map('n', 'QZ', 'ZQ', opts)
-map('n', 'Qt', 'Zt', opts)
-map('n', 'Qb', 'Zb', opts)
-map('n', 'QO', 'ZO', opts)
-map('n', 'QC', 'ZC', opts)
-map('n', 'Qa', 'Za', opts)
-map('n', 'Qx', 'Zx', opts)
-map('n', 'qo', 'zo', opts)
-map('n', 'qc', 'zc', opts)
-map('n', 'qO', 'zO', opts)
-map('n', 'qC', 'zC', opts)
-map('n', 'qa', 'za', opts)
-map('n', 'qA', 'zA', opts)
-map('n', 'qm', 'zm', opts)
-map('n', 'qr', 'zr', opts)
-map('n', 'qM', 'zM', opts)
-map('n', 'qR', 'zR', opts)
-map('n', 'qx', 'zx', opts)
-map('n', 'qv', 'zv', opts)
-map('n', 'q=', 'z=', opts)
-map('n', 'qn', 'zn', opts)
-map('n', 'qN', 'zN', opts)
-map('n', 'qg', 'zg', opts)
-map('n', 'qG', 'zG', opts)
-map('n', 'qw', 'zw', opts)
-map('n', 'qW', 'zW', opts)
+map('n', 'QQ', ':w<CR>')
+map('n', 'QZ', 'ZQ')
+map('n', 'Qt', 'Zt')
+map('n', 'Qq', 'ZZ')
+map('n', 'Qb', 'Zb')
+map('n', 'QO', 'ZO')
+map('n', 'QC', 'ZC')
+map('n', 'Qa', 'Za')
+map('n', 'Qx', 'Zx')
+map('n', 'qo', 'zo')
+map('n', 'qc', 'zc')
+map('n', 'qO', 'zO')
+map('n', 'qC', 'zC')
+map('n', 'qa', 'za')
+map('n', 'qA', 'zA')
+map('n', 'qm', 'zm')
+map('n', 'qr', 'zr')
+map('n', 'qM', 'zM')
+map('n', 'qR', 'zR')
+map('n', 'qx', 'zx')
+map('n', 'qv', 'zv')
+map('n', 'q=', 'z=')
+map('n', 'qn', 'zn')
+map('n', 'qN', 'zN')
+map('n', 'qg', 'zg')
+map('n', 'qG', 'zG')
+map('n', 'qw', 'zw')
+map('n', 'qW', 'zW')
 
-map('n', 'z', 'u', opts)
-map('n', 'Z', '<C-r>', opts)
+map('n', 'z', 'u')
+map('n', 'Z', '<C-r>')
 
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -103,14 +132,31 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- tab management
 for i = 1, 9 do
-	map('n', '<C-' .. i .. '>', i .. 'gt', opts)
-	map('i', '<C-' .. i .. '>', i .. 'gt', opts)
+	map('n', '<C-' .. i .. '>', i .. 'gt')
+	map('i', '<C-' .. i .. '>', i .. 'gt')
 end
-map('n', '<Tab>', ':tabnext<CR>', opts)
-map('n', '<S-Tab>', ':tabprevious<CR>', opts)
+map('n', '<Tab>', ':tabnext<CR>')
+map('n', '<S-Tab>', ':tabprevious<CR>')
 
 
+
+map('i', '', '~')
+
+--[[                              _ 
+  __ ___ _ __  _ __  __ _ _ _  __| |
+ / _/ _ \ '  \| '  \/ _` | ' \/ _` |
+ \__\___/_|_|_|_|_|_\__,_|_||_\__,_|
+
+]]
 
 -- block the stupid '' with ~
-map('i', '', '~', opts)
-map('c', '', '~', opts)
+map('c', '', '~')
+
+map('c', '<A-a>', "<Left>")
+map('c', '<A-d>', "<right>")
+apimap('c', '<A-s>', '<C-z>')
+apimap('c', '<A-w>', '<C-p>')
+
+--map('c', '<A-e>', '<>')
+map('c', '<A-x>', '<C-h>')
+vim.keymap.set('c', '<A-x>', '<C-h>')

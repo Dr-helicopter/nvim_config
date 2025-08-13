@@ -14,9 +14,8 @@ treesitter.setup {
 	},
 	indent = {
 		enable = true,
-		disable = { }
+		disable = { "gdscript"}
 	},
-
 	modules = {},
 
 	highlight = {

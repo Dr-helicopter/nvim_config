@@ -93,4 +93,8 @@ return {
           	require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
         end,
 	},
+	{
+		'goolord/alpha-nvim',
+		config = function() require 'plugins_config.alpha' end,
+	}
 }

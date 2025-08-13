@@ -61,3 +61,12 @@ require('keymaps')
 -- godot support
 require('godot_support')
 
+
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "gdscript",
+    callback = function()
+        vim.bo.autoindent = true
+        vim.bo.smartindent = true
+    end,
+})
