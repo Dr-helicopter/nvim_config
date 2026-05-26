@@ -22,10 +22,6 @@ return {
 		'folke/noice.nvim', requires = { 'MunifTanjim/uni.nvim' },
 		config = function() require('plugins_config.noice') end,
 	},
-	{ -- nvim tree
-		'nvim-tree/nvim-tree.lua',  dependencies = { 'nvim-tree/nvim-web-devicons' },
-		  config = function() require('plugins_config.nvim-tree') end,
-	},
 	{ -- cmp
 		'hrsh7th/nvim-cmp',
     	event = 'InsertEnter',
@@ -78,23 +74,22 @@ return {
 
 
 
-
 	{ -- autopairs
 		'windwp/nvim-autopairs',
-        opts = {
-			fast_wrap = {},
-        	disable_filetype = { 'TelescopePrompt', 'vim' },
-        },
-        config = function(_, opts)
-        	require('nvim-autopairs').setup(opts)
-
-          	-- setup cmp for autopairs
-          	local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          	require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
-        end,
+		config = function() require 'plugins_config.autopairs' end
 	},
 	{
 		'goolord/alpha-nvim',
 		config = function() require 'plugins_config.alpha' end,
-	}
+	},
+	{
+  "apyra/nvim-unity-sync",
+  config = function()
+    require("unity.plugin").setup({
+ unity_path = "path/to/unity/Unity.exe", -- Optional, to run the :Uopen command
+  unity_cs_template = false --Optional, used to insert the unity MonoBehaviour template in new .cs files
+})
+  end,
+  ft = "cs",
+}
 }

@@ -43,12 +43,6 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 
--- syntax highligting
-vim.cmd("syntax on")
-vim.cmd.colorscheme('horizon')
-vim.o.background = "dark"
-
-
 -- code folding
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
@@ -61,6 +55,7 @@ require('keymaps')
 -- godot support
 require('godot_support')
 
+require 'theme'
 
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -70,3 +65,22 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.smartindent = true
     end,
 })
+
+local open_fff = require("fff").start
+
+vim.api.nvim_create_user_command("Ex", function() open_fff() end, {})
+vim.api.nvim_create_user_command("Explore", function() open_fff() end, {})
+vim.api.nvim_create_user_command("Sexplore", function() open_fff() end, {})
+vim.api.nvim_create_user_command("Vexplore", function() open_fff() end, {})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		local arg = vim.fn.argv(0)
+		if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+			vim.cmd("bd")        -- close the empty buffer
+			open_fff()           -- your function here
+		end
+	end
+})
+
+require('tty.tty_settings').apply()

@@ -1,10 +1,12 @@
--- noice UI settings --
-
-local noice = require("noice")
-noice.setup({
-    enabled = true,
-    view = 'cmdline_popup',
-
+local tty = require 'tty.tty_settings'
+local opts = {
+	cmdline = {
+		enabled = true,
+		view = "cmdline_popup",
+		format = {
+			lua = { title = " Cmdline "},
+		},
+	},
 
 	lsp = {
 		override = {
@@ -23,4 +25,22 @@ noice.setup({
 		},
 		opts = { skip = true },
 	},}
-})
+}
+
+local function merge_tables(base, extra)
+  for k, v in pairs(extra) do
+    base[k] = v
+  end
+  return base
+end
+
+
+if tty.is_tty() then
+	merge_tables(opts, tty.get_noice())
+end
+
+
+
+
+local noice = require("noice")
+noice.setup(opts)

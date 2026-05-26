@@ -52,7 +52,7 @@ capabilities.textDocument.completion.completionItem = {
 
 
 
-local lspconfig = require('lspconfig')
+--local lspconfig = require "lspconfig"
 local mason_lspconfig = require('mason-lspconfig')
 
  mason_lspconfig.setup({
@@ -86,7 +86,7 @@ vim.lsp.config("pylsp", {
 		pylsp = {
 			plugins = {
 				pycodestyle = {
-					ignore = { "W191", "E701", "E704", "E301", "E741" },
+					ignore = { "W391", "W191", "E701", "E704", "E301", "E741" },
 					maxLineLength = 150,
 				},
 			},
@@ -94,9 +94,23 @@ vim.lsp.config("pylsp", {
 	},
 })
 
+vim.lsp.enable("omnisharp")
+vim.lsp.config("omnisharp", {
+	settings = {
+		omnisharp = {
+			formattingOptions = {
+				enableEditorConfigSupport = true, -- respects .editorconfig
+				organizeImports = false,
+				enableFormatting = false,          -- disables formatting entirely
+			},
+			roslynExtensionsOptions = {
+				enableAnalyzersSupport = false,   -- disables extra code analysis warnings
+				locationPaths = {}
+			}
+		}
+    },
+})
 
-lspconfig.gdscript.setup(capabilities)
 
+--lspconfig.gdscript.setup(capabilities)
 
-
-lspconfig.gdscript.setup(capabilities)

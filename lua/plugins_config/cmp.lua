@@ -22,10 +22,6 @@ cmp.setup({
 })
 
 
-cmp.event:on("menu_closed", function()
-    print("cmp menu closed")
-end)
-
 cmp.event:on("menu_opened", function()
     print("cmp menu opened")
 end)

@@ -3,7 +3,7 @@ local treesitter = require('nvim-treesitter.configs')
 treesitter.setup {
 	auto_install = true,
 	sync_install = true,
-  ignore_install = { "javascript" },
+	ignore_install = {},
 	ensure_installed = {
 		'lua',
 		'python',
