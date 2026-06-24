@@ -1,5 +1,6 @@
 -- syntax highligting
 vim.cmd("syntax on")
+vim.cmd.colorscheme("habmax")
 vim.o.background = "dark"
 
 

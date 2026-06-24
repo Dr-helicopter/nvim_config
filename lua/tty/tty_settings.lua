@@ -16,7 +16,13 @@ function M.is_tty()
 	end
 
 
-	if term:match("xterm-kitty") or term:match("kitty") or term:match("xterm") or term:match("alacritty") or term:match("wezterm") or term:match("256color") then
+	if term:match("xterm-kitty") or
+		term:match("kitty") or
+		term:match("xterm") or
+		term:match("alacritty") or
+		term:match("wezterm") or
+		term:match("foot") or
+		term:match("256color") then
 		return false
 	end
 

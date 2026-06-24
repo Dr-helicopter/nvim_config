@@ -47,7 +47,6 @@ return {
 		},
 		config = function() return require('plugins_config.cmp') end,
   	},
-
   	-- LSPs --
 	{
 		'neovim/nvim-lspconfig',
