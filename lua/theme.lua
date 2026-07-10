@@ -6,11 +6,12 @@ vim.o.termguicolors = false
 
 
 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { ctermfg=6})
-vim.api.nvim_set_hl(0, "string", {ctermfg=5, fg="NONE"})
+vim.api.nvim_set_hl(0, "string", {ctermfg=10, fg="NONE"})
 vim.api.nvim_set_hl(0, "comment", {ctermfg=8, fg="NONE"})
 vim.api.nvim_set_hl(0, "function_call", {ctermfg=3, fg="NONE"})
 vim.api.nvim_set_hl(0, "Variable", {ctermfg=1, fg="NONE"})
 vim.api.nvim_set_hl(0, "Function", {ctermfg=12, fg="NONE"})
+vim.api.nvim_set_hl(0, "Keyword", {ctermfg=5, fg="NONE"})
 vim.api.nvim_set_hl(0, "Conditional", {ctermfg=4, fg="NONE"})
 vim.api.nvim_set_hl(0, "Delimiter", {ctermfg=7, fg="NONE"})
 vim.api.nvim_set_hl(0, "LineNr", {ctermfg=8, fg="NONE"})
