@@ -18,14 +18,6 @@ vim.opt.numberwidth = 3
 vim.opt.signcolumn = 'yes:4'
 
 
-
--- transparency
-vim.cmd([[
-	hi Normal guibg=NONE ctermbg=NONE
-	hi NonText guibg=NONE ctermbg=NONE
-]])
-
-
 -- loading lazy
 require('config.lazy')
 
@@ -83,4 +75,4 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end
 })
 
-require('tty.tty_settings').apply()
+--require('tty.tty_settings').apply()

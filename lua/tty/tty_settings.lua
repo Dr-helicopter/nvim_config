@@ -43,6 +43,7 @@ function M.apply()
 	if not M.is_tty() then return end
 
 
+
 	vim.cmd("colorscheme habamax")
 	vim.opt.termguicolors = false
 	vim.opt.background = "dark"

@@ -1,15 +1,17 @@
 -- syntax highligting
 vim.cmd("syntax on")
-vim.cmd.colorscheme('horizon')
+vim.cmd.colorscheme('noctu')
 vim.o.background = "dark"
 vim.o.termguicolors = false
 
 
+vim.api.nvim_set_hl(0, "PreProc", {ctermfg=15, fg="NONE"})
 vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { ctermfg=6})
 vim.api.nvim_set_hl(0, "string", {ctermfg=10, fg="NONE"})
 vim.api.nvim_set_hl(0, "comment", {ctermfg=8, fg="NONE"})
 vim.api.nvim_set_hl(0, "function_call", {ctermfg=3, fg="NONE"})
 vim.api.nvim_set_hl(0, "Variable", {ctermfg=1, fg="NONE"})
+vim.api.nvim_set_hl(0, "Identifier", {ctermfg=1, fg="NONE"})
 vim.api.nvim_set_hl(0, "Function", {ctermfg=12, fg="NONE"})
 vim.api.nvim_set_hl(0, "Keyword", {ctermfg=5, fg="NONE"})
 vim.api.nvim_set_hl(0, "Conditional", {ctermfg=4, fg="NONE"})
@@ -18,6 +20,7 @@ vim.api.nvim_set_hl(0, "LineNr", {ctermfg=8, fg="NONE"})
 
 vim.api.nvim_set_hl(0, "Number", {ctermfg=3, fg="NONE"})
 vim.api.nvim_set_hl(0, "Constant", {ctermfg=3, fg="NONE"})
+
 
 vim.api.nvim_set_hl(0, "shFunctionExpr", {ctermfg=10, fg="NONE"})
 vim.api.nvim_set_hl(0, "shOperator", {ctermfg=10, fg="NONE"})
@@ -51,3 +54,15 @@ vim.api.nvim_set_hl(0, "Visual", { ctermbg = 0, ctermfg = "NONE", bg = "NONE", f
 vim.api.nvim_set_hl(0, "Search", { ctermbg = 0, ctermfg = "NONE", bg = "NONE", fg = "NONE" })
 vim.api.nvim_set_hl(0, "Substitute", { ctermbg = 0, ctermfg = "NONE", bg = "NONE", fg = "NONE" })
 vim.api.nvim_set_hl(0, "CurSearch", { ctermbg = 0, ctermfg = 1, bg = "NONE", fg = "NONE" })
+
+
+
+
+vim.api.nvim_set_hl(0, "shDeref", {ctermfg=3, fg="NONE"})
+
+
+vim.api.nvim_set_hl(0, "@variable", { link = "Variable" })
+vim.api.nvim_set_hl(0, "@keyword", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "@keyword.return", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "@keyword.operator", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "@keyword.function", { link = "Keyword" })

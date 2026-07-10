@@ -1,10 +1,8 @@
 -- plugins table
 return {
-	{ -- just the theme
-		'akinsho/horizon.nvim',
+	{
+		'noahfrederick/vim-noctu'
 	},
-
-
 	{ -- treesitter
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
@@ -82,13 +80,17 @@ return {
 		config = function() require 'plugins_config.alpha' end,
 	},
 	{
-  "apyra/nvim-unity-sync",
-  config = function()
-    require("unity.plugin").setup({
- unity_path = "path/to/unity/Unity.exe", -- Optional, to run the :Uopen command
-  unity_cs_template = false --Optional, used to insert the unity MonoBehaviour template in new .cs files
-})
-  end,
-  ft = "cs",
-}
+		'apyra/nvim-unity-sync',
+		config = function()
+			require('unity.plugin').setup({
+				unity_path = 'path/to/unity/Unity.exe', -- Optional, to run the :Uopen command
+	  			unity_cs_template = false --Optional, used to insert the unity MonoBehaviour template in new .cs files
+			})
+		end,
+		ft = 'cs',
+	},
+	{
+		'echasnovski/mini.hipatterns',
+		config = function() require('plugins_config.mini_hipatterns') end
+	}
 }
