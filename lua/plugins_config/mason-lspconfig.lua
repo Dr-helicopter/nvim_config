@@ -112,5 +112,11 @@ vim.lsp.config("omnisharp", {
 })
 
 
+vim.lsp.enable('gdscript')
+vim.lsp.config('gdscript', {
+	settings = {
+
+	}
+})
 --lspconfig.gdscript.setup(capabilities)
 

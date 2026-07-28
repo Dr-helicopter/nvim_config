@@ -55,8 +55,11 @@ vim.api.nvim_set_hl(0, "Search", { ctermbg = 0, ctermfg = "NONE", bg = "NONE", f
 vim.api.nvim_set_hl(0, "Substitute", { ctermbg = 0, ctermfg = "NONE", bg = "NONE", fg = "NONE" })
 vim.api.nvim_set_hl(0, "CurSearch", { ctermbg = 0, ctermfg = 1, bg = "NONE", fg = "NONE" })
 
+-- for tabby
+vim.api.nvim_set_hl(0, "CurrentTab", {ctermfg=15, fg="NONE"})
 
 
+vim.api.nvim_set_hl(0, "gdscriptStatement", { ctermfg = 1 })
 
 vim.api.nvim_set_hl(0, "shDeref", {ctermfg=3, fg="NONE"})
 

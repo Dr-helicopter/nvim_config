@@ -1,10 +1,10 @@
 local theme = {
 	fill = 'TabLine',
-	head = { fg='#3D4A51', bg='#3D4A51', style='italic' },
-	current_tab = { fg='#3D4A51', bg='#A4BDCB', style='italic' },
-	tab = { fg='#A4BDCB', bg='#46555D', style='italic' },
 	win = 'TabLine',
 	tail = 'TabLine',
+	head = 'TabLine',
+	current_tab = 'CurrentTab',
+	tab = 'TabLine',
 }
 
 local function to_bin(n) return n==0 and"0"or to_bin(math.floor(n/2))..(n%2) end
@@ -14,7 +14,7 @@ require('tabby').setup {
 	line = function(line) return {
 		{
 			{ '  ', hl = { fg = '#7FBBB3', bg = '#414B50' } },
-			line.sep('', theme.head, theme.fill),
+			line.sep('/', theme.head, theme.fill),
 		},
 		line.tabs().foreach(function(tab)
 			local hl = tab.is_current() and theme.current_tab or theme.tab
@@ -38,19 +38,18 @@ require('tabby').setup {
 			end
 
 			return {
-				line.sep('', hl, theme.fill),
+				line.sep('/', hl, theme.fill),
 				to_bin(tab.number()),
 				tab_name,
 				modified and '',
-				tab.close_btn(''),
-				line.sep('', hl, theme.fill),
+				line.sep('/', hl, theme.fill),
 				hl = hl,
 				margin = ' ',
 			}
 		end),
 		line.spacer(),
 		{
-			line.sep('', theme.tail, theme.fill),
+			line.sep('/', theme.tail, theme.fill),
 			{ '  ', hl = theme.tail },
 		},
 		hl = theme.fill,

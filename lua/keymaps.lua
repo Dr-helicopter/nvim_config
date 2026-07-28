@@ -234,5 +234,5 @@ local function start_tab_fff()
 end
 
 
-map('n', 'F', start_fff)
+map('n', '<C-f>', start_fff)
 map('n', '<A-f>', start_tab_fff)
